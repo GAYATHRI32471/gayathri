@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            dark: '#2563eb'
+                        },
+                        secondary: {
+                            light: '#10b981',
+                            dark: '#059669'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-shape-divider-bottom-1683915629 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .custom-shape-divider-bottom-1683915629 svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 150px;
+        }
+
+        .custom-shape-divider-bottom-1683915629 .shape-fill {
+            fill: #3B82F6;
+        }
+
+        .dark .custom-shape-divider-bottom-1683915629 .shape-fill {
+            fill: #2563EB;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #2563eb;
+        }
+
+        /* Additional custom styles */
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-item:hover .skill-progress {
+            width: 100%;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-primary-light dark:text-primary-dark">Portfolio</a>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-800 dark:text-gray-200 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Desktop menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#Works" class="nav-link">Work Experience</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <button id="theme-toggle" class="text-gray-800 dark:text-gray-200 focus:outline-none">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+                <a href="#home" class="block py-2">Home</a>
+                <a href="#about" class="block py-2">About</a>
+                <a href="#projects" class="block py-2">Projects</a>
+                <a href="#skills" class="block py-2">Skills</a>
+               <a href="#Works" class="text-lg hover:text-blue-500 transition">Work Experience</a>
+               <a href="#contact" class="block py-2">Contact</a>
+                <button id="mobile-theme-toggle" class="mt-2 text-gray-800 dark:text-gray-200 focus:outline-none">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 text-center md:text-left animate-fade-in">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-primary-light dark:text-primary-dark">Gayathri Kosanam</span></h1>
+                <h2 class="text-2xl md:text-3xl mb-6">Data Science Student</h2>
+                <p class="text-lg mb-8 max-w-lg mx-auto md:mx-0">I analyze and process the data to draw meaningful insights and predict the trends accordingly.</p>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <a href="#contact" class="bg-primary-light dark:bg-primary-dark text-white px-6 py-3 rounded-lg hover:bg-primary-dark dark:hover:bg-primary-light transition-colors">Contact Me</a>
+                    <a href="#projects" class="border border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark px-6 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">View Work</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-12 md:mt-0 animate-slide-up">
+                <img src="./images/marketing_img.jpg" alt="Developer working" class="w-full shadow-xl max-w-md mx-auto">
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+            <div class="custom-shape-divider-bottom-1683915629">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                    <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                    <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,236.83-84.81V0Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">About <span class="text-primary-light dark:text-primary-dark">Me</span></h2>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <img src="./images/mine_jp.JPG">
+                        <div class="absolute -bottom-2 -right-2 bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-semibold mb-4">Who am I?</h3>
+                    <p class="mb-6 text-lg"> </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="font-semibold mb-2"><i class="fas fa-user mr-2 text-primary-light dark:text-primary-dark"></i> Name</h4>
+                            <p>Gayathri Kosanam</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2"><i class="fas fa-envelope mr-2 text-primary-light dark:text-primary-dark"></i> Email</h4>
+                            <p>2200032471cseh@gmail.com</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2"><i class="fas fa-phone mr-2 text-primary-light dark:text-primary-dark"></i> Phone</h4>
+                            <p>+91 8309591599</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-2"><i class="fas fa-map-marker-alt mr-2 text-primary-light dark:text-primary-dark"></i> Location</h4>
+                            <p>Andhra Pradesh, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="https://github.com/GAYATHRI32471" class="bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-github mr-2"></i> GitHub
+                        </a>
+                        <a href="Linkedin.com/in/kosanam-gayathri-620235256/" class="bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-linkedin mr-2"></i> LinkedIn
+                        </a>
+                        <!-- <a href="#" class="bg-blue-400 text-white px-4 py-2 rounded-lg flex items-center">
+                            <i class="fab fa-twitter mr-2"></i> Twitter
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">My <span class="text-primary-light dark:text-primary-dark">Projects</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
+                    <div class="relative">
+                        <img src="./images/Screenshot 2025-06-15 212901.png">
+                        <div class="project-overlay absolute inset-0 bg-primary-light/90 dark:bg-primary-dark/90 flex flex-col justify-center items-center text-white opacity-0 transform translate-y-4 transition-all duration-300 p-4">
+                            <h3 class="text-xl font-bold mb-2">Online Food Ordering System Website</h3>
+                            <p class="text-center mb-4">A full-featured online store with cart functionality</p>
+                            <div class="flex space-x-2">
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">React</span>
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Node.js</span>
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Express.js</span>
+                                 <span class="bg-white/20 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Online Food Ordering System</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Online store with item listings, cart, and checkout.</p>
+                        <div class="flex justify-between">
+                            <a href="https://youtu.be/Zs-k8AMt-TI?si=4ANRsCBQu05rR9yT" class="text-primary-light dark:text-primary-dark font-medium">View Project</a>
+                            <!-- <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"> -->
+                                <!-- <i class="fab fa-github"></i> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
+                    <div class="relative">
+                        <img src="./images/Screenshot 2025-06-08 205040.png ">
+                        <div class="project-overlay absolute inset-0 bg-primary-light/90 dark:bg-primary-dark/90 flex flex-col justify-center items-center text-white opacity-0 transform translate-y-4 transition-all duration-300 p-4">
+                            <h3 class="text-xl font-bold mb-2">Financial Performance Dashboard</h3>
+                            <p class="text-center mb-4">A Business Analyst project</p>
+                            <div class="flex space-x-2">
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Tableau</span>
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Excel</span>
+                                <!-- <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Tailwind</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Financial Performance Dashboard</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Implemented using Tableau Visualization and General Analyzing using calculated fields.</p>
+                        <div class="flex justify-between">
+                            <a href="https://public.tableau.com/app/profile/gayathri.kosanam6428/viz/FinancialPerformanceDashboard_17478284950330/Dashboard1" class="text-primary-light dark:text-primary-dark font-medium">View Project</a>
+                            <!-- <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                <i class="fab fa-github"></i> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
+                    <div class="relative">
+                        <img src="./images/Screenshot 2025-06-09 104021.png">
+                        <div class="project-overlay absolute inset-0 bg-primary-light/90 dark:bg-primary-dark/90 flex flex-col justify-center items-center text-white opacity-0 transform translate-y-4 transition-all duration-300 p-4">
+                            <h3 class="text-xl font-bold mb-2">Human Resources Dashboard</h3>
+                            <p class="text-center mb-4">Real-time enhancement of workers and analyzed department-wise productivity.</p>
+                            <div class="flex space-x-2">
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Tableau</span>
+                                <span class="bg-white/20 px-3 py-1 rounded-full text-sm">Excel</span>
+                                <!-- <span class="bg-white/20 px-3 py-1 rounded-full text-sm">CSS</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Human Resources Dashboard</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Worked with data preprocessing and visualized various aspects using Tableau.</p>
+                        <div class="flex justify-between">
+                            <a href="https://public.tableau.com/app/profile/gayathri.kosanam6428/viz/HumanResourcesBusinessAnalyst_17486719823690/HumanResourcesDashboard" class="text-primary-light dark:text-primary-dark font-medium">View Project</a>
+                            <!-- <a href="#" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                <i class="fab fa-github"></i>
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-primary-light dark:bg-primary-dark text-white px-6 py-3 rounded-lg hover:bg-primary-dark dark:hover:bg-primary-light transition-colors">
+                    View All Projects
+                </a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">My <span class="text-primary-light dark:text-primary-dark">Skills</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Technical Skills</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>Data Science</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-primary-light dark:bg-primary-dark h-2 rounded-full transition-all duration-1000" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>Data Visualization & Management</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-primary-light dark:bg-primary-dark h-2 rounded-full transition-all duration-1000" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>HTML/CSS</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-primary-light dark:bg-primary-dark h-2 rounded-full transition-all duration-1000" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>MERN STACK</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-primary-light dark:bg-primary-dark h-2 rounded-full transition-all duration-1000" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Professional Skills</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>Communication</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-secondary-light dark:bg-secondary-dark h-2 rounded-full transition-all duration-1000" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>Teamwork</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-secondary-light dark:bg-secondary-dark h-2 rounded-full transition-all duration-1000" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>Problem Solving</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-secondary-light dark:bg-secondary-dark h-2 rounded-full transition-all duration-1000" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-1">
+                                <span>Creativity</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="w-full bg-gray-300 dark:bg-gray-600 rounded-full h-2">
+                                <div class="skill-progress bg-secondary-light dark:bg-secondary-dark h-2 rounded-full transition-all duration-1000" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16">
+  <h3 class="text-xl font-semibold mb-6 text-center">Tools & Technologies</h3>
+  <div class="flex flex-wrap justify-center gap-4">
+
+    <!-- Example Skill Card with Hover -->
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fab fa-html5 text-4xl text-orange-500 mb-2"></i>
+      <span>HTML</span>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fab fa-css3-alt text-4xl text-blue-500 mb-2"></i>
+      <span>CSS</span>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fab fa-js text-4xl text-yellow-500 mb-2"></i>
+      <span>JavaScript</span>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fab fa-react text-4xl text-blue-400 mb-2"></i>
+      <span>React</span>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fab fa-node-js text-4xl text-green-600 mb-2"></i>
+      <span>Node.js</span>
+    </div>
+
+    
+
+    <!-- Deep Learning -->
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-28 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fas fa-brain text-4xl text-purple-500 mb-2"></i>
+      <span class="text-center">Deep Learning</span>
+    </div>
+
+    <!-- Neural Networks -->
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-28 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fas fa-project-diagram text-4xl text-indigo-500 mb-2"></i>
+      <span class="text-center">Neural Networks</span>
+    </div>
+
+    <!-- CNN -->
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fas fa-network-wired text-4xl text-blue-400 mb-2"></i>
+      <span>CNN</span>
+    </div>
+
+    <!-- Power BI -->
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" alt="Power BI" class="w-10 h-10 mb-2">
+      <span class="text-center text-sm">Power BI</span>
+    </div>
+
+    <!-- Tableau -->
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png" alt="Tableau" class="w-10 h-10 mb-2">
+      <span class="text-center text-sm">Tableau</span>
+    </div>
+
+    <!-- Canva -->
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <img src="./canva_logo.jpg" alt="Canva" class="w-8 h-8 mb-2">
+      <span>Canva</span>
+    </div>
+
+    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md flex flex-col items-center w-24 hover:shadow-xl hover:scale-105 transform transition duration-300">
+      <i class="fab fa-figma text-4xl text-purple-500 mb-2"></i>
+      <span>Figma</span>
+    </div>
+
+  </div>
+</div>
+
+        </div>
+    </section>
+
+    <section id="Works" class="py-20 relative">
+      <div class = "container mx-auto px-6">
+         <h2 class="text-3xl font-bold text-center mb-12">Work <span class="text-primary-light dark:text-primary-dark">Experience</span></h2>
+
+           <div class="mt-20 px-6 text-white flex flex-col items-center">
+
+
+  <div class="flex flex-col md:flex-row justify-center items-start gap-12 w-full max-w-7xl">
+
+    <!-- Left Half - Business Analyst Intern -->
+    <div class="w-full md:w-1/2 bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-chart-line text-indigo-500 text-3xl mr-3"></i>
+        <h4 class="text-xl font-semibold text-white">Business Analyst Intern</h4>
+      </div>
+      <p class="text-gray-700 dark:text-gray-300">May 2025 – June 2025 | Remote, India</p>
+      <ul class="list-disc list-inside text-base text-gray-300 space-y-2">
+        <li>Worked on real-world data to create analytical dashboards.</li>
+        <li>Generated financial reports with trend analysis across countries.</li>
+        <li>Measured employee engagement using calculated metrics.</li>
+      </ul>
+    </div>
+
+    <!-- Right Half - Content Writer Intern -->
+    <div class="w-full md:w-1/2 bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300">
+      <div class="flex items-center mb-4">
+        <i class="fas fa-pen-nib text-pink-400 text-3xl mr-3"></i>
+        <h4 class="text-xl font-semibold text-white">Content Writer Intern</h4>
+      </div>
+      <p class="text-gray-700 dark:text-gray-300">June 2024 – August 2024 | Hyderabad, India</p>
+      <ul class="list-disc list-inside text-base text-gray-300 space-y-2">
+        <li>Created AI-integrated pharma content for marketing use.</li>
+        <li>Enhanced pharma branding using KOL insights.</li>
+        <li>Supported digital transformation blending tech with expertise.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      </div>   
+
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In <span class="text-primary-light dark:text-primary-dark">Touch</span></h2>
+            
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-semibold mb-12">Contact Information</h3>
+                    <p class="mb-8">Feel free to reach out to me for any questions or opportunities. I'll get back to you as soon as possible.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Location</h4>
+                                <p>Vijayawada, AndhraPradesh, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p>2200032471cseh@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full mr-4">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <p>+91 8309591599</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold mb-4">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/GAYATHRI32471" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full hover:bg-primary-light dark:hover:bg-primary-dark hover:text-white transition-colors">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/kosanam-gayathri" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                     
+                </div>
+                <div class="md:w-1/2 flex justify-end items-center">
+    <img src="./images/getintouch_img.jpg" alt="Handshake" class= "w-64 rounded-md shadow-md max-w-full h-auto
+">
+</div>
+
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="#" class="text-2xl font-bold">Portfolio</a>
+                    <p class="mt-2">© 2025 Gayathri Kosanam. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#home" class="hover:text-primary-light">Home</a>
+                    <a href="#about" class="hover:text-primary-light">About</a>
+                    <a href="#projects" class="hover:text-primary-light">Projects</a>
+                    <a href="#Works" class="hover:text-primary-light">Work Experience</a>
+                    <a href="#contact" class="hover:text-primary-light">Contact</a>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set ial state for animations
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+        });
+        
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
